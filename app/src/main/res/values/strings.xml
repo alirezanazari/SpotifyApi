@@ -6,4 +6,9 @@
     <string name="loading">Loading...</string>
     <string name="login">Login</string>
     <string name="login_hint">You Need To Login..</string>
+
+    <string name="com_spotify_sdk_redirect_host">ismyapp</string>
+    <string name="com_spotify_sdk_redirect_scheme">bestapp</string>
+    <string name="spotify_connection_fail">Failed To Connect To Spotify</string>
+
 </resources>

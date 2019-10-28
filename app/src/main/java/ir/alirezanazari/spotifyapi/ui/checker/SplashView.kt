@@ -5,6 +5,6 @@ import ir.alirezanazari.spotifyapi.ui.BaseView
 
 interface SplashView: BaseView{
 
-    fun onLoginNeed()
+    fun onRequestCheckLoginState()
 
 }
