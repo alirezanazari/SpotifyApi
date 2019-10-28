@@ -26,7 +26,7 @@
         app:layout_constraintTop_toBottomOf="@id/pb_loading"/>
 
     <androidx.constraintlayout.widget.Group
-        android:id="@+id/loader"
+        android:id="@+id/lyt_loader"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="visible"
@@ -56,7 +56,7 @@
         app:layout_constraintTop_toBottomOf="@id/btn_login"/>
 
     <androidx.constraintlayout.widget.Group
-        android:id="@+id/login"
+        android:id="@+id/lyt_login"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="gone"

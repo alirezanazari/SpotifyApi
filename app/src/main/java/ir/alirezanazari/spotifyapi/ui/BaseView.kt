@@ -5,6 +5,6 @@ interface BaseView {
 
     fun onStartLoader()
     fun onStopLoader()
-    fun onShowMessage()
+    fun onShowMessage(message : String)
 
 }
