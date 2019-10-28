@@ -4,14 +4,18 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: "kotlin-kapt"
+
+apply plugin: 'androidx.navigation.safeargs'
+
 android {
-    compileSdkVersion 28
+    compileSdkVersion rootProject.compile_sdki
     defaultConfig {
-        applicationId "ir.alirezanazari.spotifyapi"
-        minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        applicationId "ir.alirezanazari.zangoole"
+        minSdkVersion rootProject.min_sdk
+        targetSdkVersion rootProject.target_sdk
+        versionCode rootProject.version_code
+        versionName rootProject.version_name
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -25,9 +29,38 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta3'
+
+    // Rx
+    implementation "io.reactivex.rxjava2:rxkotlin:$rootProject.rx_kotlin"
+
+    // Koin
+    implementation "org.koin:koin-core:$rootProject.koin_version"
+    implementation "org.koin:koin-core-ext:$rootProject.koin_version"
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt 'com.github.bumptech.glide:compiler:4.8.0'
+
+    // Groupie RecyclerView
+    implementation 'com.xwray:groupie:2.1.0'
+    implementation 'com.xwray:groupie-kotlin-android-extensions:2.1.0'
+
+    // Kotlin Android Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1"
+
+    // Navigation component
+    implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$rootProject.nav_version"
+
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation project(path: ':domain')
+    implementation project(path: ':data')
 }
