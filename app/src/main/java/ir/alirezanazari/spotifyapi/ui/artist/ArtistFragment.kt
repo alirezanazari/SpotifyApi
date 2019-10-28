@@ -2,14 +2,14 @@ package ir.alirezanazari.spotifyapi.ui.artist
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ir.alirezanazari.spotifyapi.R
+import ir.alirezanazari.spotifyapi.ui.BaseFragment
 
 
-class ArtistFragment : Fragment() {
+class ArtistFragment : BaseFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
