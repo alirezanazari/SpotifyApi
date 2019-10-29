@@ -10,9 +10,9 @@ class GetSearchArtists(
     private val repository: MusicRepository ,
     io : Scheduler ,
     ui : Scheduler
-): UseCase<ArtistEntity , String>(io , ui) {
+): UseCase<List<ArtistEntity> , String>(io , ui) {
 
-    override fun build(param: String): Observable<ArtistEntity> {
+    override fun build(param: String): Observable<List<ArtistEntity>> {
         return repository.getSearchArtists(param)
     }
 

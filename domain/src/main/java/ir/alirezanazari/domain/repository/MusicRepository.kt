@@ -7,7 +7,7 @@ import ir.alirezanazari.domain.entity.ArtistEntity
 
 interface MusicRepository {
 
-    fun getSearchArtists(query : String) : Observable<ArtistEntity>
-    fun getArtistAlbums(artistId : String) : Observable<AlbumEntity>
+    fun getSearchArtists(query : String) : Observable<List<ArtistEntity>>
+    fun getArtistAlbums(artistId : String) : Observable<List<AlbumEntity>>
 
 }
