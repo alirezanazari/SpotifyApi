@@ -31,7 +31,7 @@ class AccessTokenAuthenticator(
                 return response.request()
                     .newBuilder()
                     .removeHeader("Authorization")
-                    .addHeader("Authorization", "Bearer $updatedToken")
+                    .addHeader("Authorization", updatedToken)
                     .build()
             }
         }

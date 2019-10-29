@@ -16,7 +16,7 @@ class AccessTokenInterceptor(
         } else {
             val authenticatedRequest = chain.request()
                 .newBuilder()
-                .addHeader("Authorization", "Bearer $token")
+                .addHeader("Authorization", token)
                 .build()
             chain.proceed(authenticatedRequest)
         }

@@ -17,15 +17,11 @@ class RefreshTokenInterceptor : Interceptor {
         val credential = "$CLIENT_ID:$CLIENT_SECRET"
         val basic = "Basic " + Base64.encodeToString(credential.toByteArray(), Base64.NO_WRAP)
 
-        val url = chain.request()
-            .url()
-            .newBuilder()
-            .addQueryParameter("Authorization" , basic)
-            .build()
-
-        val request = chain.request()
-            .newBuilder()
-            .url(url)
+        val original = chain.request()
+        val request = original.newBuilder()
+            .header("Authorization", basic)
+            .header("Content-Type", "application/json")
+            .method(original.method(), original.body())
             .build()
 
         return chain.proceed(request)
