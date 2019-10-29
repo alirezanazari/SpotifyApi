@@ -11,6 +11,7 @@ import androidx.navigation.Navigation
 import com.spotify.sdk.android.authentication.AuthenticationClient
 import com.spotify.sdk.android.authentication.AuthenticationRequest
 import com.spotify.sdk.android.authentication.AuthenticationResponse
+import ir.alirezanazari.data.provider.PreferencesProvider
 import ir.alirezanazari.spotifyapi.R
 import ir.alirezanazari.spotifyapi.internal.Const
 import ir.alirezanazari.spotifyapi.ui.BaseFragment
@@ -22,6 +23,7 @@ class SplashFragment : BaseFragment() , SplashView {
         const val REQUEST_CODE_SPOTIFY_LOGIN = 123
     }
 
+    private lateinit var mPrefences : PreferencesProvider
     private lateinit var mPresenter: SplashPresenter
     private lateinit var mView : View
 
@@ -34,6 +36,7 @@ class SplashFragment : BaseFragment() , SplashView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //todo:// use di
+        mPrefences = PreferencesProvider(activity!!)
         mView = view
         mPresenter = SplashPresenter()
         mPresenter.bindView(this)
@@ -89,7 +92,7 @@ class SplashFragment : BaseFragment() , SplashView {
             when(response.type){
 
                 AuthenticationResponse.Type.TOKEN -> {
-                    getApplication().spotifyToken = response.accessToken
+                    mPrefences.setToken(response.accessToken)
                     openSearchPage()
                 }
 
