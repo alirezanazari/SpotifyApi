@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
@@ -70,12 +71,7 @@ class SearchFragment : BaseFragment(), SearchView {
 
     override fun onSearchResult(artists: List<ArtistEntity>) {
 
-        val artistItems : List<ArtistSearchItem> = artists.map(::ArtistSearchItem)
-        mArtistsAdapter.addAll(artistItems)
-        rv_search.apply {
-            layoutManager = LinearLayoutManager(this@SearchFragment.context)
-            adapter = mArtistsAdapter
-        }
+        initArtistsRecycler(artists)
 
     }
 
@@ -91,6 +87,30 @@ class SearchFragment : BaseFragment(), SearchView {
         setPageState(false)
         mArtistsAdapter.clear()
         Toast.makeText(activity, message, Toast.LENGTH_LONG).show()
+
+    }
+
+    private fun initArtistsRecycler(artists: List<ArtistEntity>) {
+
+        val artistItems : List<ArtistSearchItem> = artists.map(::ArtistSearchItem)
+        mArtistsAdapter.addAll(artistItems)
+        rv_search.apply {
+            layoutManager = LinearLayoutManager(this@SearchFragment.context)
+            adapter = mArtistsAdapter
+        }
+
+        mArtistsAdapter.setOnItemClickListener{ item , view ->
+            (item as? ArtistSearchItem)?.let {
+                openArtistPage(it.artist?.id , view)
+            }
+        }
+
+    }
+
+    private fun openArtistPage(id: String, view: View) {
+
+        val actionOpenArtist = SearchFragmentDirections.actionSearchResult(id)
+        Navigation.findNavController(view).navigate(actionOpenArtist)
 
     }
 

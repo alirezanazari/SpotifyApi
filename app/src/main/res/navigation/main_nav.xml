@@ -30,7 +30,6 @@
         tools:layout="@layout/fragment_artist" >
         <argument
             android:name="artistId"
-            app:argType="long"
-            android:defaultValue="0L" />
+            app:argType="string" />
     </fragment>
 </navigation>

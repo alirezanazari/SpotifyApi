@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.row_artist.*
 
 
 class ArtistSearchItem (
-    private val artist : ArtistEntity
+    val artist : ArtistEntity
 ): Item() {
 
     override fun bind(viewHolder: ViewHolder, position: Int) {
