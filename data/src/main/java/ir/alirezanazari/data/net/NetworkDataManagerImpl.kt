@@ -8,7 +8,6 @@ import ir.alirezanazari.domain.entity.ArtistEntity
 
 
 class NetworkDataManagerImpl(
-    preferencesProvider: PreferencesProvider ,
     accessTokenProvider: AccessTokenProvider
 ) : NetworkDataManager{
 
@@ -16,7 +15,7 @@ class NetworkDataManagerImpl(
 
     init {
         val apiConfig = ApiConfig
-        mApi = apiConfig.invoke(preferencesProvider , accessTokenProvider)
+        mApi = apiConfig.invoke(accessTokenProvider)
     }
 
     override fun getSearchArtistResult(query: String): Observable<List<ArtistEntity>> {

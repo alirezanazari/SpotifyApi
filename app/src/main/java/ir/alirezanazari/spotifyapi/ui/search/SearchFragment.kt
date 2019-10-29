@@ -34,7 +34,6 @@ class SearchFragment : BaseFragment(), SearchView {
         val usecase = GetSearchArtists(
             MusicRepositoryImpl(
                 NetworkDataManagerImpl(
-                    PreferencesProvider(view.context),
                     AccessTokenProviderImpl(PreferencesProvider(view.context))
                 )
             ), Schedulers.io(), AndroidSchedulers.mainThread()
