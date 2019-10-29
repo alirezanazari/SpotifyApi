@@ -1,13 +1,24 @@
 package ir.alirezanazari.data.model
 
+import com.google.gson.annotations.SerializedName
+
 data class AlbumItem(
-    val album_group: String,
-    val album_type: String,
+    @SerializedName("album_group")
+    val albumGroup: String,
+    @SerializedName("album_type")
+    val albumType: String,
+    @SerializedName("artists")
     val artists: List<AlbumArtist>,
+    @SerializedName("id")
     val id: String,
+    @SerializedName("images")
     val images: List<ArtistImage>,
+    @SerializedName("name")
     val name: String,
-    val release_date: String,
+    @SerializedName("release_date")
+    val releaseDate: String,
+    @SerializedName("type")
     val type: String,
+    @SerializedName("uri")
     val uri: String
 )
