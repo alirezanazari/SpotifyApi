@@ -10,19 +10,21 @@ class AccessTokenAuthenticator(
     private val tokenProvider: AccessTokenProvider
 ) : Authenticator {
 
+    private val headerKey = "Authorization"
+
     override fun authenticate(route: Route?, response: Response): Request? {
         val token = tokenProvider.token() ?: return null
 
         synchronized(this) {
             val newToken = tokenProvider.token()
 
-            if (response.request().header("Authorization") != null) {
+            if (response.request().header(headerKey) != null) {
 
                 if (newToken != token) {
                     return response.request()
                         .newBuilder()
-                        .removeHeader("Authorization")
-                        .addHeader("Authorization",  newToken)
+                        .removeHeader(headerKey)
+                        .addHeader(headerKey,  newToken)
                         .build()
                 }
 
@@ -30,8 +32,8 @@ class AccessTokenAuthenticator(
 
                 return response.request()
                     .newBuilder()
-                    .removeHeader("Authorization")
-                    .addHeader("Authorization", updatedToken)
+                    .removeHeader(headerKey)
+                    .addHeader(headerKey, updatedToken)
                     .build()
             }
         }

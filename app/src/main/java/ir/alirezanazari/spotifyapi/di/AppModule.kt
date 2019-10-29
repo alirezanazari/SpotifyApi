@@ -22,7 +22,9 @@ val appModule = module {
     single { RefreshTokenInterceptor() }
     single { RefreshTokenApiConfig(get()) }
     single<AccessTokenProvider> { AccessTokenProviderImpl(get() , get()) }
-    single { ApiConfig(get()) }
+    single { AccessTokenInterceptor(get()) }
+    single { AccessTokenAuthenticator(get()) }
+    single { ApiConfig(get() , get()) }
     single<NetworkDataManager> { NetworkDataManagerImpl(get()) }
     single<MusicRepository> { MusicRepositoryImpl(get()) }
     factory { GetSearchArtists(get() , Schedulers.io() , AndroidSchedulers.mainThread()) }

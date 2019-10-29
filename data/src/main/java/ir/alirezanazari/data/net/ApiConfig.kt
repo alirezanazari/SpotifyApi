@@ -1,5 +1,6 @@
 package ir.alirezanazari.data.net
 
+import android.accounts.AbstractAccountAuthenticator
 import ir.alirezanazari.data.provider.AccessTokenProvider
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -15,12 +16,13 @@ class ApiConfig {
         private const val BASE_URL = "https://api.spotify.com/v1/"
 
         operator fun invoke(
-            accessTokenProvider: AccessTokenProvider
+            accessTokenAuthenticator: AccessTokenAuthenticator ,
+            accessTokenInterceptor: AccessTokenInterceptor
         ): Api {
 
             val okHttpClient = OkHttpClient.Builder()
-                .authenticator(AccessTokenAuthenticator(accessTokenProvider))
-                .addInterceptor(AccessTokenInterceptor(accessTokenProvider))
+                .authenticator(accessTokenAuthenticator)
+                .addInterceptor(accessTokenInterceptor)
                 .connectTimeout(16, TimeUnit.SECONDS)
                 .build()
 
