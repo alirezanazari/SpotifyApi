@@ -6,14 +6,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.Navigation
 import com.spotify.sdk.android.authentication.AuthenticationClient
 import com.spotify.sdk.android.authentication.AuthenticationRequest
 import com.spotify.sdk.android.authentication.AuthenticationResponse
 import ir.alirezanazari.data.provider.PreferencesProvider
 import ir.alirezanazari.spotifyapi.R
-import ir.alirezanazari.spotifyapi.internal.Const
 import ir.alirezanazari.spotifyapi.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_splash.*
 
@@ -21,6 +19,9 @@ class SplashFragment : BaseFragment() , SplashView {
 
     companion object{
         const val REQUEST_CODE_SPOTIFY_LOGIN = 123
+        const val REDIRECT_URI = "http://alirezanazari.ir"
+        const val CLIENT_ID = "90d847e3b4c84d81b0bfb85ed24b1984"
+
     }
 
     private lateinit var mPrefences : PreferencesProvider
@@ -75,7 +76,7 @@ class SplashFragment : BaseFragment() , SplashView {
         if (activity == null) return
 
         val builder : AuthenticationRequest.Builder =
-            AuthenticationRequest.Builder(Const.Net.CLIENT_ID , AuthenticationResponse.Type.TOKEN , Const.Net.REDIRECT_URI)
+            AuthenticationRequest.Builder(CLIENT_ID , AuthenticationResponse.Type.CODE , REDIRECT_URI)
         builder.setScopes(arrayOf("user-library-read"))
 
         val request = builder.build()
@@ -91,8 +92,8 @@ class SplashFragment : BaseFragment() , SplashView {
 
             when(response.type){
 
-                AuthenticationResponse.Type.TOKEN -> {
-                    mPrefences.setToken(response.accessToken)
+                AuthenticationResponse.Type.CODE -> {
+                    mPrefences.setCode(response.code)
                     openSearchPage()
                 }
 

@@ -1,20 +1,22 @@
 package ir.alirezanazari.data.net
 
 import io.reactivex.Observable
+import ir.alirezanazari.data.provider.AccessTokenProvider
 import ir.alirezanazari.data.provider.PreferencesProvider
 import ir.alirezanazari.domain.entity.AlbumEntity
 import ir.alirezanazari.domain.entity.ArtistEntity
 
 
 class NetworkDataManagerImpl(
-    preferencesProvider: PreferencesProvider
+    preferencesProvider: PreferencesProvider ,
+    accessTokenProvider: AccessTokenProvider
 ) : NetworkDataManager{
 
     private var mApi : Api
 
     init {
         val apiConfig = ApiConfig
-        mApi = apiConfig.invoke(preferencesProvider)
+        mApi = apiConfig.invoke(preferencesProvider , accessTokenProvider)
     }
 
     override fun getSearchArtistResult(query: String): Observable<List<ArtistEntity>> {

@@ -1,6 +1,6 @@
 package ir.alirezanazari.data.net
 
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import ir.alirezanazari.data.provider.AccessTokenProvider
 import ir.alirezanazari.data.provider.PreferencesProvider
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -14,30 +14,34 @@ class ApiConfig {
 
     companion object {
 
-        const val BASE_URL = "https://api.spotify.com/v1/"
+        private const val BASE_URL = "https://api.spotify.com/v1/"
 
-        operator fun invoke(pref : PreferencesProvider): Api {
+        operator fun invoke(
+            pref: PreferencesProvider,
+            accessTokenProvider: AccessTokenProvider
+        ): Api {
 
-             val interceptor = Interceptor { chain ->
+            /*val interceptor = Interceptor { chain ->
 
-                 //todo :// save token in pref not safe encrypt text or find another way
-                 val url = chain.request()
-                     .url()
-                     .newBuilder()
-                     .addQueryParameter("Authorization" , pref.getToken())
-                  .build()
+                //todo :// save token in pref not safe encrypt text or find another way
+                val url = chain.request()
+                    .url()
+                    .newBuilder()
+                    .addQueryParameter("Authorization", pref.getToken())
+                    .build()
 
-              val request = chain.request()
-                  .newBuilder()
-                  .url(url)
-                  .build()
+                val request = chain.request()
+                    .newBuilder()
+                    .url(url)
+                    .build()
 
-              return@Interceptor chain.proceed(request)
-          }
+                return@Interceptor chain.proceed(request)
+            }*/
 
             val okHttpClient = OkHttpClient.Builder()
-                .addInterceptor(interceptor)
-                .connectTimeout(16 , TimeUnit.SECONDS)
+                .authenticator(AccessTokenAuthenticator(accessTokenProvider))
+                .addInterceptor(AccessTokenInterceptor(accessTokenProvider))
+                .connectTimeout(16, TimeUnit.SECONDS)
                 .build()
 
             return Retrofit.Builder()
