@@ -7,6 +7,5 @@ import ir.alirezanazari.spotifyapi.ui.BaseView
 interface SearchView: BaseView {
 
     fun onSearchResult(artists: List<ArtistEntity>)
-    fun setEmptyAdapterToList()
 
 }

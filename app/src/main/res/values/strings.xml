@@ -11,5 +11,6 @@
     <string name="com_spotify_sdk_redirect_scheme">bestapp</string>
     <string name="spotify_connection_fail">Failed To Connect To Spotify</string>
     <string name="search_artist">Search Artist</string>
+    <string name="short_text_hint">text is too short for search</string>
 
 </resources>

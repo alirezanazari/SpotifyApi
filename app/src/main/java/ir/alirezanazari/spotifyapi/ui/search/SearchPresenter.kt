@@ -16,7 +16,7 @@ class SearchPresenter(
     }
 
     override fun onCreate() {
-        getView()?.setEmptyAdapterToList()
+
     }
 
     override fun onDestroy() {

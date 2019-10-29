@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
         android:gravity="left"
+        android:singleLine="true"
         android:hint="@string/search_artist"
         android:layout_margin="6dp"
         android:imeOptions="actionSearch"
@@ -26,5 +27,33 @@
         app:layout_constraintEnd_toEndOf="@id/et_search"
         app:layout_constraintTop_toBottomOf="@id/et_search"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    <ProgressBar
+        android:id="@+id/pb_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:text="@string/loading"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="@id/pb_loading"
+        app:layout_constraintEnd_toEndOf="@id/pb_loading"
+        app:layout_constraintTop_toBottomOf="@id/pb_loading"/>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/lyt_loader"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:constraint_referenced_ids="pb_loading,tv_loading"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
