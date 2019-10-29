@@ -24,11 +24,12 @@ import ir.alirezanazari.domain.intractor.GetSearchArtists
 import ir.alirezanazari.spotifyapi.R
 import ir.alirezanazari.spotifyapi.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_search.*
+import org.koin.android.ext.android.inject
 
 
 class SearchFragment : BaseFragment(), SearchView {
 
-    private lateinit var mPresenter: SearchPresenter
+    private val mPresenter: SearchPresenter by inject()
     private var mArtistsAdapter = GroupAdapter<ViewHolder>()
 
     override fun onCreateView(
@@ -40,14 +41,6 @@ class SearchFragment : BaseFragment(), SearchView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val usecase = GetSearchArtists(
-            MusicRepositoryImpl(
-                NetworkDataManagerImpl(
-                    AccessTokenProviderImpl(PreferencesProvider(view.context))
-                )
-            ), Schedulers.io(), AndroidSchedulers.mainThread()
-        )
-        mPresenter = SearchPresenter(usecase)
         mPresenter.bindView(this)
         setupViewsListener()
     }

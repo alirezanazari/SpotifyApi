@@ -14,6 +14,7 @@ import ir.alirezanazari.data.provider.PreferencesProvider
 import ir.alirezanazari.spotifyapi.R
 import ir.alirezanazari.spotifyapi.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_splash.*
+import org.koin.android.ext.android.inject
 
 class SplashFragment : BaseFragment() , SplashView {
 
@@ -24,8 +25,8 @@ class SplashFragment : BaseFragment() , SplashView {
 
     }
 
-    private lateinit var mPrefences : PreferencesProvider
-    private lateinit var mPresenter: SplashPresenter
+    private val mPrefences : PreferencesProvider by inject()
+    private val mPresenter: SplashPresenter by inject()
     private lateinit var mView : View
 
     override fun onCreateView(
@@ -36,10 +37,7 @@ class SplashFragment : BaseFragment() , SplashView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //todo:// use di
-        mPrefences = PreferencesProvider(activity!!)
         mView = view
-        mPresenter = SplashPresenter()
         mPresenter.bindView(this)
         mPresenter.onCreate()
         setupViewsListener()
