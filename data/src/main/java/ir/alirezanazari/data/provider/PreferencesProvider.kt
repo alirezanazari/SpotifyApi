@@ -16,7 +16,7 @@ class PreferencesProvider(context: Context) {
     val preferences : SharedPreferences
         get() = appContext.getSharedPreferences(MUSIC_PREF_NAME , Context.MODE_PRIVATE)
 
-    fun getToken() : String?{
+    fun getToken() : String{
         return preferences.getString(SPOTIFY_TOKEN_PREF, "")
     }
 

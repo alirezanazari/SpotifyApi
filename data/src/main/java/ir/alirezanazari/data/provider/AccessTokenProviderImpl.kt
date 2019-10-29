@@ -14,7 +14,7 @@ class AccessTokenProviderImpl(
 
     }
 
-    override fun token(): String? {
+    override fun token(): String {
         return preferencesProvider.getToken()
     }
 
