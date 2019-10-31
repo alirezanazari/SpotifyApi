@@ -19,8 +19,8 @@ val appModule = module {
     single { PreferencesProvider(get()) }
     factory { SplashPresenter() }
 
-    single { RefreshTokenInterceptor() }
-    single { RefreshTokenApiConfig(get()) }
+    single { TokenInterceptor() }
+    single { TokenApiConfig(get()) }
     single<AccessTokenProvider> { AccessTokenProviderImpl(get() , get()) }
     single { AccessTokenInterceptor(get()) }
     single { AccessTokenAuthenticator(get()) }

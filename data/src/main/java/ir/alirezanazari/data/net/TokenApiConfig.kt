@@ -7,13 +7,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 
-class RefreshTokenApiConfig {
+class TokenApiConfig {
 
     companion object {
 
         private const val BASE_URL = "https://api.spotify.com/"
 
-        operator fun invoke(interceptor: RefreshTokenInterceptor): RefreshTokenApi {
+        operator fun invoke(interceptor: TokenInterceptor): TokenApi {
 
             val okHttpClient = OkHttpClient.Builder()
                 .connectTimeout(16, TimeUnit.SECONDS)
@@ -25,7 +25,7 @@ class RefreshTokenApiConfig {
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-                .create(RefreshTokenApi::class.java)
+                .create(TokenApi::class.java)
 
         }
 

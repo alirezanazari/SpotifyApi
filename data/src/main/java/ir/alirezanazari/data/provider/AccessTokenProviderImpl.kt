@@ -1,12 +1,11 @@
 package ir.alirezanazari.data.provider
 
-import android.util.Base64
 import ir.alirezanazari.data.model.RefreshTokenBodyModel
-import ir.alirezanazari.data.net.RefreshTokenApi
+import ir.alirezanazari.data.net.TokenApi
 
 class AccessTokenProviderImpl(
     private val preferencesProvider: PreferencesProvider ,
-    private val refreshTokenApi: RefreshTokenApi
+    private val refreshTokenApi: TokenApi
 ) : AccessTokenProvider {
 
     companion object{

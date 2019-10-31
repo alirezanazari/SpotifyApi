@@ -5,7 +5,7 @@ import ir.alirezanazari.data.provider.AccessTokenProvider
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class RefreshTokenInterceptor : Interceptor {
+class TokenInterceptor : Interceptor {
 
     companion object {
         const val CLIENT_ID = "90d847e3b4c84d81b0bfb85ed24b1984"

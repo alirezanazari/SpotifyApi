@@ -7,7 +7,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 
-interface RefreshTokenApi {
+interface TokenApi {
 
     @POST("api/token")
     fun getRefreshToken(
