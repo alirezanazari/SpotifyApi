@@ -3,9 +3,10 @@ package ir.alirezanazari.data.net
 import io.reactivex.Observable
 import ir.alirezanazari.data.model.AlbumModel
 import ir.alirezanazari.data.model.ArtistModel
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import ir.alirezanazari.data.model.RefreshTokenBodyModel
+import ir.alirezanazari.data.model.RefreshTokenModel
+import retrofit2.Call
+import retrofit2.http.*
 
 
 interface Api {
@@ -22,4 +23,13 @@ interface Api {
         @Query("include_groups") group : String = "album"
     ) : Observable<AlbumModel>
 
+}
+
+
+interface TokenApi {
+
+    @POST("api/token")
+    fun getRefreshToken(
+        @Body refreshTokenBodyModel: RefreshTokenBodyModel
+    ): Call<RefreshTokenModel>
 }

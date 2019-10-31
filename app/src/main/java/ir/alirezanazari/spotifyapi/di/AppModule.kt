@@ -19,11 +19,11 @@ val appModule = module {
     single { PreferencesProvider(get()) }
     factory { SplashPresenter() }
 
-    single { TokenInterceptor() }
+    single { RefreshTokenInterceptor() }
     single { TokenApiConfig(get()) }
     single<AccessTokenProvider> { AccessTokenProviderImpl(get() , get()) }
-    single { AccessTokenInterceptor(get()) }
-    single { AccessTokenAuthenticator(get()) }
+    single { TokenInterceptor(get()) }
+    single { TokenAuthenticator(get()) }
     single { ApiConfig(get() , get()) }
     single<NetworkDataManager> { NetworkDataManagerImpl(get()) }
     single<MusicRepository> { MusicRepositoryImpl(get()) }
